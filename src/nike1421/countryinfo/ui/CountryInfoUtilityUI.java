@@ -36,4 +36,21 @@ public class CountryInfoUtilityUI {
 	JLabel countryLanguageLabel;
 	JLabel countryLanguageResultLabel;
 	
+	public CountryInfoUtilityUI() {
+		mainUIFrame = new JFrame("SOAP Retrieval Utility");
+		mainUIFrame.setSize(800, 560);
+		mainUIFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		mainUIFrame.setResizable(false);
+		
+		componentPanel = new JPanel();
+		componentPanel.setLayout(null);
+		mainUIFrame.setContentPane(componentPanel);
+		
+		mainUIFrame.setVisible(true);		
+	}
+	
+	public static void main(String[] args) {
+		CountryInfoUtilityUI countryInfoUtilityUI = new CountryInfoUtilityUI();
+	}
+	
 }
