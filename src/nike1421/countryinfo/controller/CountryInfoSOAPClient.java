@@ -13,7 +13,9 @@ import jakarta.xml.soap.SOAPPart;
 
 public class CountryInfoSOAPClient {
 
-	private static SOAPResponsePOJO callSoapWebService(String soapEndpointUrl, String soapAction, String countryISOCode) {
+	public static SOAPResponsePOJO callSoapWebService(String countryISOCode) {
+		String soapEndpointUrl = "http://webservices.oorsprong.org/websamples.countryinfo/CountryInfoService.wso";
+		String soapAction = "http://webservices.oorsprong.org/websamples.countryinfo/CountryInfoService.wso?op=FullCountryInfo";
 		SOAPResponsePOJO soapResponsePOJO = null;
 		try {
 			// Create SOAP Connection Factory Instance
@@ -29,12 +31,12 @@ public class CountryInfoSOAPClient {
 			SOAPMessage soapResponse = soapConnection.call(soapRequest, soapEndpointUrl);
 
 			// Print the SOAP Response
-			System.out.println("Response SOAP Message:");
-			soapResponse.writeTo(System.out);
-			System.out.println();
-			
+//			System.out.println("Response SOAP Message:");
+//			soapResponse.writeTo(System.out);
+//			System.out.println();
+
 			soapResponsePOJO = getResponsePOJO(soapResponse);
-			
+
 		} catch (Exception e) {
 			// TODO: handle exception
 			System.err.println(
@@ -62,9 +64,9 @@ public class CountryInfoSOAPClient {
 		soapMessage.saveChanges();
 
 		// Print the message for debugging purposes
-		System.out.println("Request SOAP Message:");
-		soapMessage.writeTo(System.out);
-		System.out.println("\n");
+//		System.out.println("Request SOAP Message:");
+//		soapMessage.writeTo(System.out);
+//		System.out.println("\n");
 
 		return soapMessage;
 	}
@@ -100,32 +102,30 @@ public class CountryInfoSOAPClient {
 		// Add the Parameter
 		soapBodyElem1.addTextNode(countryISOCode);
 	}
-	
-	private static SOAPResponsePOJO getResponsePOJO(SOAPMessage soapMessage) throws SOAPException{
+
+	private static SOAPResponsePOJO getResponsePOJO(SOAPMessage soapMessage) throws SOAPException {
 		SOAPResponsePOJO responsePOJO = null;
 		String nameSpaceString = "http://www.oorsprong.org/websamples.countryinfo";
-		
+
 		SOAPBody soapResponseBody = soapMessage.getSOAPPart().getEnvelope().getBody();
-		
-		
+
 		responsePOJO = new SOAPResponsePOJO(
-				soapResponseBody.getElementsByTagNameNS(nameSpaceString, "sISOCode").item(0).getTextContent(), 
-				soapResponseBody.getElementsByTagNameNS(nameSpaceString, "sName").item(0).getTextContent(), 
+				soapResponseBody.getElementsByTagNameNS(nameSpaceString, "sISOCode").item(0).getTextContent(),
+				soapResponseBody.getElementsByTagNameNS(nameSpaceString, "sName").item(0).getTextContent(),
 				soapResponseBody.getElementsByTagNameNS(nameSpaceString, "sCapitalCity").item(0).getTextContent(),
 				soapResponseBody.getElementsByTagNameNS(nameSpaceString, "sPhoneCode").item(0).getTextContent(),
 				soapResponseBody.getElementsByTagNameNS(nameSpaceString, "sContinentCode").item(0).getTextContent(),
 				soapResponseBody.getElementsByTagNameNS(nameSpaceString, "sCurrencyISOCode").item(0).getTextContent(),
 				soapResponseBody.getElementsByTagNameNS(nameSpaceString, "sCountryFlag").item(0).getTextContent(),
-				soapResponseBody.getElementsByTagNameNS(nameSpaceString, "sName").item(1).getTextContent()
-			);
-				
+				soapResponseBody.getElementsByTagNameNS(nameSpaceString, "sName").item(1).getTextContent());
+
 		return responsePOJO;
 	}
 
 	public static void main(String[] args) {
-		String soapEndpointUrl = "http://webservices.oorsprong.org/websamples.countryinfo/CountryInfoService.wso";
-        String soapAction = "http://webservices.oorsprong.org/websamples.countryinfo/CountryInfoService.wso?op=FullCountryInfo";
-        SOAPResponsePOJO respMessage = callSoapWebService(soapEndpointUrl, soapAction, "IN");
-        System.out.println(respMessage.toString());
+//		String soapEndpointUrl = "http://webservices.oorsprong.org/websamples.countryinfo/CountryInfoService.wso";
+//        String soapAction = "http://webservices.oorsprong.org/websamples.countryinfo/CountryInfoService.wso?op=FullCountryInfo";
+		SOAPResponsePOJO respMessage = callSoapWebService("IN");
+		System.out.println(respMessage.toString());
 	}
 }

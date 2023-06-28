@@ -1,12 +1,16 @@
 package nike1421.countryinfo.ui;
 
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import javax.imageio.ImageIO;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -19,6 +23,8 @@ import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
 
 import nike1421.countryinfo.controller.Continent;
+import nike1421.countryinfo.controller.CountryInfoSOAPClient;
+import nike1421.countryinfo.controller.SOAPResponsePOJO;
 
 public class CountryInfoUtilityUI {
 	JFrame mainUIFrame;
@@ -27,7 +33,7 @@ public class CountryInfoUtilityUI {
 
 	JButton retrieveResultsButton;
 	JLabel inputLabel;
-	JComboBox continentComboBox;
+	JComboBox<String> continentComboBox;
 	JComboBox<String> countryComboBox;
 
 	JLabel countryFlagLabel;
@@ -136,7 +142,7 @@ public class CountryInfoUtilityUI {
 		componentPanel.add(continentComboBox);
 
 		// ComboBox for selecting Country
-		countryComboBox = new JComboBox();
+		countryComboBox = new JComboBox<String>();
 		countryComboBox.setBounds(330, 87, 135, 15);
 		countryComboBox.setEditable(false);
 		countryComboBox.setEnabled(false);
@@ -155,7 +161,7 @@ public class CountryInfoUtilityUI {
 				int selectedCountry = countryComboBox.getSelectedIndex();
 				
 				// Get the ISO Code of the country using the index
-				String isoCodeSelectedCountryString;
+				String isoCodeSelectedCountryString = null;
 				
 				switch (continentComboBox.getSelectedItem().toString()) {
 				case "Africa":
@@ -180,7 +186,27 @@ public class CountryInfoUtilityUI {
 					JOptionPane.showMessageDialog(null, "ISO Code Not Found");
 				}
 				
+				// Set Response Object
+				SOAPResponsePOJO soapResponse = null;
+				
 				// Call SOAP API HERE
+				try {
+					soapResponse = CountryInfoSOAPClient.callSoapWebService(isoCodeSelectedCountryString);
+					URL imageUrl = new URL(soapResponse.getCountryFlagUrl());
+					Image flagImage = ImageIO.read(imageUrl);
+					countryNameLabel.setText(soapResponse.getCountryName());
+					countryPhoneCodeResultLabel.setText(soapResponse.getCountryPhoneCode());
+					countryCapitalResultLabel.setText(soapResponse.getCountryCapital());
+					countryContinentResultLabel.setText(continentComboBox.getSelectedItem().toString());
+					countryISOCodeResultLabel.setText(soapResponse.getCountryISOCode());
+					countryLanguageResultLabel.setText(soapResponse.getCountryLangauge());
+					countryCurrencyResultLabel.setText(soapResponse.getCurrency());
+					countryFlagLabel.setIcon(new ImageIcon(flagImage));
+				} catch (Exception e2) {
+					// TODO: handle exception
+				}
+				
+
 				
 			}
 		});
@@ -196,13 +222,13 @@ public class CountryInfoUtilityUI {
 		// Add the Country Flag Panel
 		countryFlagLabel = new JLabel();
 		countryFlagLabel.setIcon(
-				new ImageIcon("D:\\Code Files\\Java Codes\\Java Spring Wksp\\CountryInfo\\src\\images\\India.jpg"));
+				new ImageIcon("D:\\Code Files\\Java Codes\\Java Spring Wksp\\CountryInfo\\src\\images\\Flag.png"));
 		countryFlagLabel.setBounds(50, 160, 200, 126);
 		componentPanel.add(countryFlagLabel);
 
 		// Add Country Name Label
 		countryNameLabel = new JLabel();
-		countryNameLabel.setText("India");
+		countryNameLabel.setText("");
 		countryNameLabel.setFont(new Font("Serif", Font.BOLD, 45));
 		countryNameLabel.setBounds(310, 200, 150, 45);
 		componentPanel.add(countryNameLabel);
@@ -217,7 +243,7 @@ public class CountryInfoUtilityUI {
 		componentPanel.add(countryCapitalLabel);
 
 		countryCapitalResultLabel = new JLabel();
-		countryCapitalResultLabel.setText("New Delhi");
+		countryCapitalResultLabel.setText("");
 		countryCapitalResultLabel.setFont(new Font("Serif", Font.PLAIN, 15));
 		countryCapitalResultLabel.setBounds(145, 315, 85, 15);
 		componentPanel.add(countryCapitalResultLabel);
@@ -230,7 +256,7 @@ public class CountryInfoUtilityUI {
 		componentPanel.add(countryContinentLabel);
 
 		countryContinentResultLabel = new JLabel();
-		countryContinentResultLabel.setText("Asia");
+		countryContinentResultLabel.setText("");
 		countryContinentResultLabel.setFont(new Font("Serif", Font.PLAIN, 15));
 		countryContinentResultLabel.setBounds(385, 315, 85, 15);
 		componentPanel.add(countryContinentResultLabel);
@@ -245,7 +271,7 @@ public class CountryInfoUtilityUI {
 		componentPanel.add(countryPhoneCodeLabel);
 
 		countryPhoneCodeResultLabel = new JLabel();
-		countryPhoneCodeResultLabel.setText("+91");
+		countryPhoneCodeResultLabel.setText("");
 		countryPhoneCodeResultLabel.setFont(new Font("Serif", Font.PLAIN, 15));
 		countryPhoneCodeResultLabel.setBounds(145, 345, 85, 15);
 		componentPanel.add(countryPhoneCodeResultLabel);
@@ -258,7 +284,7 @@ public class CountryInfoUtilityUI {
 		componentPanel.add(countryISOCodeLabel);
 
 		countryISOCodeResultLabel = new JLabel();
-		countryISOCodeResultLabel.setText("IN");
+		countryISOCodeResultLabel.setText("");
 		countryISOCodeResultLabel.setFont(new Font("Serif", Font.PLAIN, 15));
 		countryISOCodeResultLabel.setBounds(385, 345, 85, 15);
 		componentPanel.add(countryISOCodeResultLabel);
@@ -273,7 +299,7 @@ public class CountryInfoUtilityUI {
 		componentPanel.add(countryCurrencyLabel);
 
 		countryCurrencyResultLabel = new JLabel();
-		countryCurrencyResultLabel.setText("Indian Rupee");
+		countryCurrencyResultLabel.setText("");
 		countryCurrencyResultLabel.setFont(new Font("Serif", Font.PLAIN, 15));
 		countryCurrencyResultLabel.setBounds(145, 375, 85, 15);
 		componentPanel.add(countryCurrencyResultLabel);
@@ -286,7 +312,7 @@ public class CountryInfoUtilityUI {
 		componentPanel.add(countryLanguageLabel);
 
 		countryLanguageResultLabel = new JLabel();
-		countryLanguageResultLabel.setText("Hindi");
+		countryLanguageResultLabel.setText("");
 		countryLanguageResultLabel.setFont(new Font("Serif", Font.PLAIN, 15));
 		countryLanguageResultLabel.setBounds(385, 375, 85, 15);
 		componentPanel.add(countryLanguageResultLabel);
