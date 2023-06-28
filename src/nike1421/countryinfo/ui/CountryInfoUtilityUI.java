@@ -204,9 +204,6 @@ public class CountryInfoUtilityUI {
 				} catch (Exception e2) {
 					// TODO: handle exception
 				}
-				
-
-				
 			}
 		});
 		componentPanel.add(retrieveResultsButton);
@@ -396,6 +393,7 @@ public class CountryInfoUtilityUI {
 		australiaContinent = new Continent("Australia", australiaCountries, australiaISO);
 	}
 
+	@SuppressWarnings("unused")
 	public static void main(String[] args) {
 		CountryInfoUtilityUI countryInfoUtilityUI = new CountryInfoUtilityUI();
 	}
