@@ -116,9 +116,17 @@ public class CountryInfoSOAPClient {
 				soapResponseBody.getElementsByTagNameNS(nameSpaceString, "sPhoneCode").item(0).getTextContent(),
 				soapResponseBody.getElementsByTagNameNS(nameSpaceString, "sContinentCode").item(0).getTextContent(),
 				soapResponseBody.getElementsByTagNameNS(nameSpaceString, "sCurrencyISOCode").item(0).getTextContent(),
-				soapResponseBody.getElementsByTagNameNS(nameSpaceString, "sCountryFlag").item(0).getTextContent(),
-				soapResponseBody.getElementsByTagNameNS(nameSpaceString, "sName").item(1).getTextContent());
+				soapResponseBody.getElementsByTagNameNS(nameSpaceString, "sCountryFlag").item(0).getTextContent());
 
+		SOAPElement countryLanguage = (SOAPElement) soapResponseBody.getElementsByTagNameNS(nameSpaceString, "sName")
+				.item(1);
+
+		if (countryLanguage == null) {
+			responsePOJO.setCountryLangauge(null);
+		} else {
+			responsePOJO.setCountryLangauge(soapResponseBody.getElementsByTagNameNS(nameSpaceString, "sName").item(1).getTextContent());
+		}
+		
 		return responsePOJO;
 	}
 
