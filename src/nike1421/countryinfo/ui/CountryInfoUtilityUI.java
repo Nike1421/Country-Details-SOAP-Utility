@@ -42,7 +42,7 @@ public class CountryInfoUtilityUI {
 
 	JLabel countryLanguageLabel;
 	JLabel countryLanguageResultLabel;
-
+	String continent[] = {"Africa", "The Americas", "Antarctica", "Asia", "Europe", "Australia"};
 	public CountryInfoUtilityUI() {
 		// Set the main application frame
 		mainUIFrame = new JFrame("SOAP Retrieval Utility");
@@ -69,20 +69,21 @@ public class CountryInfoUtilityUI {
 		// Instruction Label
 		inputLabel = new JLabel("Select Continent and Country: ");
 		inputLabel.setFont(new Font("Serif", Font.PLAIN, 15));
-		inputLabel.setBounds(30, 85, 200, 15);
+		inputLabel.setBounds(15, 85, 180, 15);
 		inputLabel.setHorizontalAlignment(JLabel.CENTER);
 		componentPanel.add(inputLabel);
 
 		// ComboBox for selecting continent
-		continentComboBox = new JComboBox();
-		continentComboBox.setBounds(245, 87, 90, 15);
+		continentComboBox = new JComboBox<String>(continent);
+		continentComboBox.setBounds(210, 87, 105, 15);
 		continentComboBox.setEditable(false);
 		componentPanel.add(continentComboBox);
 
 		// ComboBox for selecting Country
 		countryComboBox = new JComboBox();
-		countryComboBox.setBounds(350, 87, 100, 15);
+		countryComboBox.setBounds(330, 87, 135, 15);
 		countryComboBox.setEditable(false);
+		countryComboBox.setEnabled(false);
 		componentPanel.add(countryComboBox);
 
 		// Widgets on the third row
