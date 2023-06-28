@@ -7,4 +7,5 @@
  */
 module CountryInfo {
 	requires java.desktop;
+	requires jakarta.xml.soap;
 }
