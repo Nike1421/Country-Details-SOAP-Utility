@@ -12,6 +12,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
@@ -146,6 +147,42 @@ public class CountryInfoUtilityUI {
 		// Add button to invoke web service
 		retrieveResultsButton = new JButton("Invoke");
 		retrieveResultsButton.setBounds(175, 120, 150, 20);
+		retrieveResultsButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// Get the index of the selected country from the country ComboBox
+				int selectedCountry = countryComboBox.getSelectedIndex();
+				
+				// Get the ISO Code of the country using the index
+				String isoCodeSelectedCountryString;
+				
+				switch (continentComboBox.getSelectedItem().toString()) {
+				case "Africa":
+					isoCodeSelectedCountryString = africaContinent.getCountryISOStrings().get(selectedCountry);
+					break;
+				case "The Americas":
+					isoCodeSelectedCountryString = americaContinent.getCountryISOStrings().get(selectedCountry);
+					break;
+				case "Asia":
+					isoCodeSelectedCountryString = asiaContinent.getCountryISOStrings().get(selectedCountry);
+					break;
+				case "Europe":
+					isoCodeSelectedCountryString = europeContinent.getCountryISOStrings().get(selectedCountry);
+					break;
+				case "Australia":
+					isoCodeSelectedCountryString = australiaContinent.getCountryISOStrings().get(selectedCountry);
+					break;
+				case "Antarctica":
+					isoCodeSelectedCountryString = antarcticaContinent.getCountryISOStrings().get(selectedCountry);
+					break;
+				default:
+					JOptionPane.showMessageDialog(null, "ISO Code Not Found");
+				}
+				
+				// Call SOAP API HERE
+			}
+		});
 		componentPanel.add(retrieveResultsButton);
 
 		// Add Separator for aesthetics
