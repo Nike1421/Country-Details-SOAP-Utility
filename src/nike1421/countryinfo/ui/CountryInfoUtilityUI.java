@@ -4,6 +4,7 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.URI;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -190,9 +191,15 @@ public class CountryInfoUtilityUI {
 				
 				// Call SOAP API HERE
 				try {
+					// Get Response from Web Service
 					soapResponse = CountryInfoSOAPClient.callSoapWebService(isoCodeSelectedCountryString);
-					URL imageUrl = new URL(soapResponse.getCountryFlagUrl());
+					
+					// Set Flag Image
+					URL imageUrl = new URL(soapResponse.getCountryFlagUrl().replaceAll(" ", "%20"));
 					Image flagImage = ImageIO.read(imageUrl);
+					countryFlagLabel.setIcon(new ImageIcon(flagImage));
+					
+					// Set Results Labels
 					countryNameLabel.setText(soapResponse.getCountryName());
 					countryPhoneCodeResultLabel.setText(soapResponse.getCountryPhoneCode());
 					countryCapitalResultLabel.setText(soapResponse.getCountryCapital());
@@ -200,9 +207,10 @@ public class CountryInfoUtilityUI {
 					countryISOCodeResultLabel.setText(soapResponse.getCountryISOCode());
 					countryLanguageResultLabel.setText(soapResponse.getCountryLangauge());
 					countryCurrencyResultLabel.setText(soapResponse.getCurrency());
-					countryFlagLabel.setIcon(new ImageIcon(flagImage));
+					
 				} catch (Exception e2) {
 					// TODO: handle exception
+					System.out.println(e2);
 				}
 			}
 		});
@@ -225,7 +233,7 @@ public class CountryInfoUtilityUI {
 		// Add Country Name Label
 		countryNameLabel = new JLabel();
 		countryNameLabel.setText("");
-		countryNameLabel.setFont(new Font("Serif", Font.BOLD, 35));
+		countryNameLabel.setFont(new Font("Serif", Font.BOLD, 25));
 		countryNameLabel.setBounds(30, 300, 440, 45);
 		countryNameLabel.setHorizontalAlignment(JLabel.CENTER);
 		componentPanel.add(countryNameLabel);
