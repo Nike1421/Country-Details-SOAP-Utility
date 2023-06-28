@@ -10,7 +10,6 @@ import java.util.Arrays;
 
 import javax.imageio.ImageIO;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -72,7 +71,7 @@ public class CountryInfoUtilityUI {
 
 		// Set the main application frame
 		mainUIFrame = new JFrame("SOAP Retrieval Utility");
-		mainUIFrame.setSize(500, 475);
+		mainUIFrame.setSize(500, 500);
 		mainUIFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		mainUIFrame.setResizable(false);
 
@@ -222,15 +221,16 @@ public class CountryInfoUtilityUI {
 		// Add the Country Flag Panel
 		countryFlagLabel = new JLabel();
 		countryFlagLabel.setIcon(
-				new ImageIcon("D:\\Code Files\\Java Codes\\Java Spring Wksp\\CountryInfo\\src\\images\\Flag.png"));
-		countryFlagLabel.setBounds(50, 160, 200, 126);
+				new ImageIcon("./src/images/Flag.png"));
+		countryFlagLabel.setBounds(150, 160, 200, 126);
 		componentPanel.add(countryFlagLabel);
 
 		// Add Country Name Label
 		countryNameLabel = new JLabel();
 		countryNameLabel.setText("");
-		countryNameLabel.setFont(new Font("Serif", Font.BOLD, 45));
-		countryNameLabel.setBounds(310, 200, 150, 45);
+		countryNameLabel.setFont(new Font("Serif", Font.BOLD, 35));
+		countryNameLabel.setBounds(30, 300, 440, 45);
+		countryNameLabel.setHorizontalAlignment(JLabel.CENTER);
 		componentPanel.add(countryNameLabel);
 
 		// Widgets on the fifth row
@@ -239,26 +239,26 @@ public class CountryInfoUtilityUI {
 		countryCapitalLabel = new JLabel();
 		countryCapitalLabel.setText("Capital: ");
 		countryCapitalLabel.setFont(new Font("Serif", Font.PLAIN, 15));
-		countryCapitalLabel.setBounds(30, 315, 85, 15);
+		countryCapitalLabel.setBounds(30, 360, 85, 15);
 		componentPanel.add(countryCapitalLabel);
 
 		countryCapitalResultLabel = new JLabel();
 		countryCapitalResultLabel.setText("");
 		countryCapitalResultLabel.setFont(new Font("Serif", Font.PLAIN, 15));
-		countryCapitalResultLabel.setBounds(145, 315, 85, 15);
+		countryCapitalResultLabel.setBounds(145, 360, 85, 15);
 		componentPanel.add(countryCapitalResultLabel);
 
 		// Add Continent Labels
 		countryContinentLabel = new JLabel();
 		countryContinentLabel.setText("Continent");
 		countryContinentLabel.setFont(new Font("Serif", Font.PLAIN, 15));
-		countryContinentLabel.setBounds(270, 315, 85, 15);
+		countryContinentLabel.setBounds(270, 360, 85, 15);
 		componentPanel.add(countryContinentLabel);
 
 		countryContinentResultLabel = new JLabel();
 		countryContinentResultLabel.setText("");
 		countryContinentResultLabel.setFont(new Font("Serif", Font.PLAIN, 15));
-		countryContinentResultLabel.setBounds(385, 315, 85, 15);
+		countryContinentResultLabel.setBounds(385, 360, 85, 15);
 		componentPanel.add(countryContinentResultLabel);
 
 		// Widgets on the sixth row
@@ -267,26 +267,26 @@ public class CountryInfoUtilityUI {
 		countryPhoneCodeLabel = new JLabel();
 		countryPhoneCodeLabel.setText("Phone Code");
 		countryPhoneCodeLabel.setFont(new Font("Serif", Font.PLAIN, 15));
-		countryPhoneCodeLabel.setBounds(30, 345, 85, 15);
+		countryPhoneCodeLabel.setBounds(30, 390, 85, 15);
 		componentPanel.add(countryPhoneCodeLabel);
 
 		countryPhoneCodeResultLabel = new JLabel();
 		countryPhoneCodeResultLabel.setText("");
 		countryPhoneCodeResultLabel.setFont(new Font("Serif", Font.PLAIN, 15));
-		countryPhoneCodeResultLabel.setBounds(145, 345, 85, 15);
+		countryPhoneCodeResultLabel.setBounds(145, 390, 85, 15);
 		componentPanel.add(countryPhoneCodeResultLabel);
 
 		// Add ISO Code Labels
 		countryISOCodeLabel = new JLabel();
 		countryISOCodeLabel.setText("ISO Code");
 		countryISOCodeLabel.setFont(new Font("Serif", Font.PLAIN, 15));
-		countryISOCodeLabel.setBounds(270, 345, 85, 15);
+		countryISOCodeLabel.setBounds(270, 390, 85, 15);
 		componentPanel.add(countryISOCodeLabel);
 
 		countryISOCodeResultLabel = new JLabel();
 		countryISOCodeResultLabel.setText("");
 		countryISOCodeResultLabel.setFont(new Font("Serif", Font.PLAIN, 15));
-		countryISOCodeResultLabel.setBounds(385, 345, 85, 15);
+		countryISOCodeResultLabel.setBounds(385, 390, 85, 15);
 		componentPanel.add(countryISOCodeResultLabel);
 
 		// Widgets on the seventh row
@@ -295,26 +295,26 @@ public class CountryInfoUtilityUI {
 		countryCurrencyLabel = new JLabel();
 		countryCurrencyLabel.setText("Currency");
 		countryCurrencyLabel.setFont(new Font("Serif", Font.PLAIN, 15));
-		countryCurrencyLabel.setBounds(30, 375, 85, 15);
+		countryCurrencyLabel.setBounds(30, 420, 85, 15);
 		componentPanel.add(countryCurrencyLabel);
 
 		countryCurrencyResultLabel = new JLabel();
 		countryCurrencyResultLabel.setText("");
 		countryCurrencyResultLabel.setFont(new Font("Serif", Font.PLAIN, 15));
-		countryCurrencyResultLabel.setBounds(145, 375, 85, 15);
+		countryCurrencyResultLabel.setBounds(145, 420, 85, 15);
 		componentPanel.add(countryCurrencyResultLabel);
 
 		// Add Language Labels
 		countryLanguageLabel = new JLabel();
 		countryLanguageLabel.setText("Language");
 		countryLanguageLabel.setFont(new Font("Serif", Font.PLAIN, 15));
-		countryLanguageLabel.setBounds(270, 375, 85, 15);
+		countryLanguageLabel.setBounds(270, 420, 85, 15);
 		componentPanel.add(countryLanguageLabel);
 
 		countryLanguageResultLabel = new JLabel();
 		countryLanguageResultLabel.setText("");
 		countryLanguageResultLabel.setFont(new Font("Serif", Font.PLAIN, 15));
-		countryLanguageResultLabel.setBounds(385, 375, 85, 15);
+		countryLanguageResultLabel.setBounds(385, 420, 85, 15);
 		componentPanel.add(countryLanguageResultLabel);
 
 		// Set the main frame visible
