@@ -69,10 +69,13 @@ public class CountryInfoUtilityUI {
 
 		declareAllCountries();
 
+		ImageIcon imgIcon = new ImageIcon("src/images/ico.png");
+		
 		// Set the main application frame
 		mainUIFrame = new JFrame("SOAP Retrieval Utility");
 		mainUIFrame.setSize(500, 500);
 		mainUIFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		mainUIFrame.setIconImage(imgIcon.getImage());
 		mainUIFrame.setResizable(false);
 
 		// The JPanel where all the widgets will be placed
