@@ -4,7 +4,6 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.net.URI;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -205,7 +204,7 @@ public class CountryInfoUtilityUI {
 					countryCapitalResultLabel.setText(soapResponse.getCountryCapital());
 					countryContinentResultLabel.setText(continentComboBox.getSelectedItem().toString());
 					countryISOCodeResultLabel.setText(soapResponse.getCountryISOCode());
-					countryLanguageResultLabel.setText(soapResponse.getCountryLangauge());
+					countryLanguageResultLabel.setText(soapResponse.getCountryLanguage());
 					countryCurrencyResultLabel.setText(soapResponse.getCurrency());
 					
 				} catch (Exception e2) {

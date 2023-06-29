@@ -17,7 +17,7 @@ public class SOAPResponsePOJO {
 	private String contintent;
 	private String currency;
 	private String countryFlagUrl;
-	private String countryLangauge;
+	private String countryLanguage;
 
 	public SOAPResponsePOJO(String countryISOCode, String countryName, String countryCapital, String countryPhoneCode,
 			String contintent, String currency, String countryFlagUrl) {

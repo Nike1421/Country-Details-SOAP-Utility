@@ -84,11 +84,14 @@ public class CountryInfoSOAPClient {
 		envelope.addNamespaceDeclaration(myNamespace, myNamespaceURI);
 
 		/*
-		 * Constructed SOAP Request Message: <SOAP-ENV:Envelope
-		 * xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
-		 * xmlns:myNamespace="http://www.webserviceX.NET"> <SOAP-ENV:Header/>
-		 * <SOAP-ENV:Body> <myNamespace:GetInfoByCity> <myNamespace:USCity>New
-		 * York</myNamespace:USCity> </myNamespace:GetInfoByCity> </SOAP-ENV:Body>
+		 * Constructed SOAP Request Message: 
+		 * <SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:myNamespace="http://www.webserviceX.NET"> 
+		 *		<SOAP-ENV:Header/>
+		 * 		<SOAP-ENV:Body> 
+		 * 			<myNamespace:GetInfoByCity> 
+		 * 				<myNamespace:USCity>New York</myNamespace:USCity>
+		 * 			</myNamespace:GetInfoByCity>
+		 * 		</SOAP-ENV:Body>
 		 * </SOAP-ENV:Envelope>
 		 */
 
@@ -122,9 +125,9 @@ public class CountryInfoSOAPClient {
 				.item(1);
 
 		if (countryLanguage == null) {
-			responsePOJO.setCountryLangauge(null);
+			responsePOJO.setCountryLanguage(null);
 		} else {
-			responsePOJO.setCountryLangauge(soapResponseBody.getElementsByTagNameNS(nameSpaceString, "sName").item(1).getTextContent());
+			responsePOJO.setCountryLanguage(soapResponseBody.getElementsByTagNameNS(nameSpaceString, "sName").item(1).getTextContent());
 		}
 		
 		return responsePOJO;
@@ -132,8 +135,8 @@ public class CountryInfoSOAPClient {
 
 	public static void main(String[] args) {
 //		String soapEndpointUrl = "http://webservices.oorsprong.org/websamples.countryinfo/CountryInfoService.wso";
-//        String soapAction = "http://webservices.oorsprong.org/websamples.countryinfo/CountryInfoService.wso?op=FullCountryInfo";
-		SOAPResponsePOJO respMessage = callSoapWebService("IN");
-		System.out.println(respMessage.toString());
+//      String soapAction = "http://webservices.oorsprong.org/websamples.countryinfo/CountryInfoService.wso?op=FullCountryInfo";
+//		SOAPResponsePOJO respMessage = callSoapWebService("IN");
+//		System.out.println(respMessage.toString());
 	}
 }
